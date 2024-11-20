@@ -3,8 +3,8 @@ from db import db
 
 #search model to be stored in analytics database 
 class Search(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id')) 
     search_query = db.Column(db.String(200))
     search_result = db.Column(db.Text)
 
