@@ -1,22 +1,25 @@
 from flask import Flask
-from db import db
+from models import db
 from dotenv import load_dotenv
 import os
-from auth import auth as auth_blueprint
+from main.routes import main as main_blueprint
 from flask_login import LoginManager
 from models.User import User
+from models import db 
+
 
 load_dotenv()
 
 app = Flask(__name__)
-app.register_blueprint(auth_blueprint)
+
+# Register the blueprint
+app.register_blueprint(main_blueprint)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 #debugging for secret key 
-print(f"Secret Key: {app.config['SECRET_KEY']}")
+#print(f"Secret Key: {app.config['SECRET_KEY']}")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-
 
 db.init_app(app)
 
@@ -28,3 +31,5 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+if __name__ == '__main__':
+    app.run(debug=True)

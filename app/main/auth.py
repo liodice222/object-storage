@@ -1,11 +1,11 @@
 #imports
 from flask import redirect, render_template, request, session, url_for, Blueprint
-from db import db
 from models.User import User
 #for password hash 
 from werkzeug.security import generate_password_hash, check_password_hash
 #for login functionality 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from models import db
 
 #set up Blueprint
 auth = Blueprint('auth', __name__)
