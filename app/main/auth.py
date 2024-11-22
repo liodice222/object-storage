@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #for login functionality 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from models import db
+import main
 
 #set up Blueprint
 auth = Blueprint('auth', __name__)
@@ -53,10 +54,11 @@ def login():
             login_failed = False
             #session['username'] = user.username
             login_user(user)
+            return redirect(url_for('main.home'))
         
-        return render_template('index.html', login_failed=login_failed, login_attempted = login_attempted)
-
-    return render_template('index.html', login_failed=login_failed, login_attempted = login_attempted)
+    return render_template('index.html', login_failed=login_failed, login_attempted=login_attempted)
+        
+       
 
 #logout route 
 @auth.route('/logout')

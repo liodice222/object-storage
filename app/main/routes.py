@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from app.app import app
+#from app.app import app
 from models import db
 from models import User, Search
 import requests
@@ -11,7 +11,6 @@ main = Blueprint('main', __name__)
 def home():
     print("rendering home.html")
     return render_template('index.html', current_user = current_user)
-
 
 
 @main.route('/search', methods=['GET'])

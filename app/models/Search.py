@@ -1,5 +1,5 @@
-import User
-from app import db
+#import User
+from . import db
 from flask import Flask
 
 #for debugging 
@@ -14,7 +14,7 @@ class Search(db.Model):
     search_result = db.Column(db.Text)
 
     #define relationship with user model
-    user = db.relationship('User', backref = 'searches')
+    #user = db.relationship('User', backref = 'searches')
 
 # if __name__ == '__main__':
-#     app.run()
+#     app.run()S
